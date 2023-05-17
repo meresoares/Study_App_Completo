@@ -1,0 +1,45 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button [text]="getBackButtonText()" defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Editar topico
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" *ngIf="topico">
+  <ion-item>
+    <ion-icon aria-hidden="true" name="person-circle" color="primary"></ion-icon>
+    <ion-label class="ion-text-wrap">
+      <h2>
+        <ion-list>
+          <ion-item> 
+            <ion-input label="Nombre" placeholder="Nombre" [(ngModel)]="topico.name"></ion-input>
+          </ion-item>
+      
+          <ion-item> 
+            <ion-input label="Orden" placeholder="Orden" [(ngModel)]="topico.order"></ion-input>
+          </ion-item>
+
+          <ion-item> 
+            <ion-input label="Prioridad" placeholder="Prioridad" [(ngModel)]="topico.priority"></ion-input>
+          </ion-item>
+
+          <ion-item> 
+            <ion-input label="Color" placeholder="Color" [(ngModel)]="topico.color"></ion-input>
+          </ion-item>
+
+        </ion-list>
+      </h2>
+    </ion-label>
+
+  </ion-item>
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button (click)="saveTopic()">
+      <ion-icon name="save-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  
+</ion-content>
