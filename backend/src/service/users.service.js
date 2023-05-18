@@ -55,7 +55,8 @@ const actualizar = async function(id, name, last_name, avatar, email, password, 
     //Variables
     let usuarioRetorno = null;    //Guardara el usuario que se va incluir o editar.
     //const data = req.body;  //Se obtiene los datos del cuerpo de la peticion
-    const data = {id, name, last_name, avatar, email, password, deleted};
+    const data = {
+        id, name, last_name, avatar, email, password, deleted};
     //const id = req.body.id;
     try {
         let usrExiste = null;

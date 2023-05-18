@@ -60,15 +60,17 @@ const actualizar = async function(req, res) {
     console.log("actualizar usuarios controller");
     //Variables
     let usuarioRetorno = null;    //Guardara el usuario que se va incluir o editar.
-     
+    
     try {
-        usuarioRetorno = await UserService.actualizar(  req.body.id, 
-                                                        req.body.name, 
-                                                        req.body.last_name, 
-                                                        req.body.avatar, 
-                                                        req.body.email, 
-                                                        req.body.password, 
-                                                        req.body.deleted);
+        usuarioRetorno = await UserService.actualizar( 
+            req.body.id, 
+            req.body.name, 
+            req.body.last_name, 
+            req.body.avatar, 
+            req.body.email, 
+            req.body.password, 
+            req.body.deleted
+        );
         res.json({
             success : true, 
             user : usuarioRetorno

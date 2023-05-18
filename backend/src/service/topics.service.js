@@ -53,14 +53,7 @@ const actualizar = async function(id, create_date, name, topic_id, order, priori
     console.log("actualizar topic");
     let topicRetorno = null;
     const data = {
-        id: id,
-        create_date: create_date,
-        name: name,
-        topic_id: topic_id,
-        order: order,
-        priority: priority,
-        color: color,
-        owner_user_id: owner_user_id
+        id, create_date, name, topic_id, order, priority, color, owner_user_id
     };
 
     try {
@@ -96,7 +89,7 @@ const eliminar = async function(id) {
 
 module.exports = {
     listar,
-    ctualizar,
+    actualizar,
     eliminar,
     busquedaPorCodigo: consultarPorCodigo
 };

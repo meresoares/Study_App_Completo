@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, Injectable, OnInit, inject } from '@angular/core';
 import { RefresherCustomEvent } from '@ionic/angular';
 import { MessageComponent } from '../message/message.component';
 
@@ -10,12 +10,14 @@ import axios from 'axios';
   templateUrl: './topic.page.html',
   styleUrls: ['./topic.page.scss'],
 })
-export class TopicPage implements OnInit {
-  private data = inject(DataService);
-  
+
+@Injectable()
+export class TopicPage implements OnInit {  
   topicos : any = [];
 
-  constructor() {}
+  constructor(
+    private data: DataService
+  ) {}
 
   refresh(ev: any) {
     setTimeout(() => {

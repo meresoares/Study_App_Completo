@@ -1,10 +1,10 @@
-import { CommonModule } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IonicModule, Platform, ToastController } from '@ionic/angular';
+import { Platform, ToastController } from '@ionic/angular';
 import { DataService, Message } from '../services/data.service';
 import axios from 'axios';
 
+@Injectable()
 @Component({
   selector: 'app-edit-topic',
   templateUrl: './edit-topic.page.html',
@@ -12,36 +12,35 @@ import axios from 'axios';
 })
 export class EditTopicPage implements OnInit {
   public message!: Message;
-  private data = inject(DataService);
-  private activatedRoute = inject(ActivatedRoute);
-  private platform = inject(Platform);
-
   topico: any = {};
 
   constructor(
     private toastController: ToastController, 
-    private router: Router) {}
+    private router: Router,
+    private dataService: DataService,
+    private activatedRoute: ActivatedRoute,
+    private platform: Platform
+  ) {}
 
-    ngOnInit() {
-      const id = this.activatedRoute.snapshot.paramMap.get('id') as string;
-      axios.get("http://localhost:3000/topics/" + id)
-        .then(result => {
-          if (result.data.success == true) {
-            if (result.data.topico != null) {
-              this.topico = result.data.topico;
-            } else {
-              this.topico = {};
-            }
+  ngOnInit() {
+    const id = this.activatedRoute.snapshot.paramMap.get('id') as string;
+    axios.get("http://localhost:3000/topics/" + id)
+.then(result => {
+        if (result.data.success == true) {
+          if (result.data.topico != null) {
+            this.topico = result.data.topico;
           } else {
-            console.log(result.data.error);
+            this.topico = {};
           }
-        })
-        .catch(error => {
-          console.log(error.message);
-        });
-    }
+        } else {
+          console.log(result.data.error);
+        }
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  }
     
-
   getBackButtonText() {
     const isIos = this.platform.is('ios')
     return isIos ? 'Inbox' : '';
@@ -83,6 +82,5 @@ export class EditTopicPage implements OnInit {
       position: 'bottom'
     });
     await toast.present();
-
   }
 }
