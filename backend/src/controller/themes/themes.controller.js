@@ -1,5 +1,5 @@
 const { sequelize } = require("../../connection");
-const {ThemesModel} = require('../../model/themes.model');
+const { ThemeModel } = require('../../model/themes.model');
 const ThemeService = require('../../service/themes.service');
 
 const listar = async function(req, res) {
@@ -28,7 +28,7 @@ const listar = async function(req, res) {
 const consultarPorCodigo = async function (req, res) {
     console.log("consultar un tema por codigo");
     try {
-        const themesModelResult = await ThemeService.busquedaPorCodigo(req.params.filtro || "");
+        const themesModelResult = await ThemeModel.findByPk(req.params.id);
         if (themesModelResult) {
             res.json({
                 success:true,
@@ -36,8 +36,8 @@ const consultarPorCodigo = async function (req, res) {
             })
         } else {
             res.json({
-                success: false,
-                temas: []
+                success: true,
+                temas: null
             })
         }
     } catch (error) {

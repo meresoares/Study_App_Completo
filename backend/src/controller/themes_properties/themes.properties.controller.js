@@ -28,16 +28,17 @@ const listar = async function(req, res) {
 const consultarPorCodigo = async function (req, res) {
     console.log("consultar un theme propertie por codigo");
     try {
-        const ThemePropertiesModel = await ThemePropertiesService.busquedaPorCodigo(req.params.filtro || "");
-        if (ThemePropertiesModel) {
+        const themePropertiesModel = await ThemePropertiesModel.findByPk(req.params.id);
+       
+        if (themePropertiesModel) {
             res.json({
                 success:true,
-                temas: ThemePropertiesModel
+                temas: themePropertiesModel
             })
         } else {
             res.json({
-                success: false,
-                temas: []
+                success: true,
+                temas: null
             })
         }
     } catch (error) {
@@ -57,7 +58,6 @@ const actualizar = async function(req, res) {
         themePropertieRetorno = await ThemePropertiesService.actualizar(
             req.body.id,
             req.body.theme_id,
-            req.body.visited,
             req.body.property_name,
             req.body.property_value,
         );         

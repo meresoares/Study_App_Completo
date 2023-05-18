@@ -18,7 +18,9 @@ const auth = async function (req, res, next) {
         if (usersDB.length > 0 && usersDB[0].length > 0) {
             user = usersDB[0][0];
             console.log("Token del usuario: ", user);
+            // almacena el id de usuario en res.locals para acceder a otras partes de la app
             res.locals.userId = user.id;
+            // Pasa al siguiente middleware
             next();
         } else {
             res.json({

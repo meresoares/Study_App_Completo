@@ -21,20 +21,29 @@ const listar = async function (textoBuscar) {
     }
 };
 
-const consultarPorCodigo = async function (codigo) {
+const consultarPorCodigo = async function (req, res) {
     console.log("consultar tema por codigo");
 
     try {
-        const themesPropertiesModelResult = await ThemePropertiesModel.findByPk(codigo);
+        const themesPropertiesModelResult = await ThemePropertiesModel.findByPk(req.params.id);
 
         if (themesPropertiesModelResult) {
-            return themesPropertiesModelResult;
+            res.json({
+                success: true,
+                themes: themesPropertiesModelResult,
+            })
         } else {
-            return [];
+            res.json({
+                success: true,
+                themes: null,
+            })
         }
     } catch (error) {
         console.log(error);
-        throw error;
+        res.json({
+            success: false,
+            error: error.message
+        });
         
     }
 };
@@ -51,7 +60,7 @@ const actualizar = async function (id, theme_id, property_name, property_value) 
         } 
         
         if (themePropertieExiste) {
-            themePropertieRetorno = await ThemePropertiesModel.update(data, {where: {id: id} } );
+            await ThemePropertiesModel.update(data, {where: {id: id} } );
             themePropertieRetorno = data;
         }
         else {

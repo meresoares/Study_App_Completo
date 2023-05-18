@@ -21,20 +21,29 @@ const listar = async function (textoBuscar) {
     }
 };
 
-const consultarPorCodigo = async function (codigo) {
+const consultarPorCodigo = async function (req, res) {
     console.log("consultar tema por codigo");
 
     try {
-        const themesModelResult = await ThemeModel.findByPk(codigo);
+        const themesModelResult = await ThemeModel.findByPk(req.params.id);
 
         if (themesModelResult) {
-            return themesModelResult;
+            res.json({
+                success: true,
+                themes: themesModelResult
+            })
         } else {
-            return [];
+            res.json({
+                success: true,
+                themes: null
+            })
         }
     } catch (error) {
         console.log(error);
-        throw error;
+        res.json({
+            success: false,
+            error: error.message
+        });
         
     }
 };
@@ -79,5 +88,8 @@ const eliminar = async function (codigo) {
 }
 
 module.exports = {
-    listar, actualizar, eliminar, busquedaPorCodigo: consultarPorCodigo
+    listar, 
+    actualizar, 
+    eliminar, 
+    busquedaPorCodigo: consultarPorCodigo
 }

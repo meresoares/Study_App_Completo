@@ -19,21 +19,18 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-accordion-group>
-    <ion-accordion value="first">
-      <ion-item *ngFor="let topicos of topicos" slot="header" color="light">
-        <ion-label>{{topicos.id}} - {{topicos.name}}</ion-label>
-        <ion-icon slot="end" name="create-outline" [routerLink]="'/edit-topic/' + topicos.id"></ion-icon>
+  <ion-accordion-group [multiple]="true" [value]="['first', 'third']">
+    <ion-accordion value="first" *ngFor="let topico of topicos">
+      <ion-item slot="header" color="light">
+        <ion-label>{{topico.id}} - {{topico.name}}</ion-label>
+        <ion-icon slot="end" name="create-outline" [routerLink]="'/edit-topic/' + topico.id"></ion-icon>
         <ion-icon slot="end" name="trash-outline"></ion-icon>
       </ion-item>
-      <ion-item slot="content">
-        <div class="ion-padding">Orden: {{topicos?.order}}</div>
-        <div class="ion-padding">Prioridad: {{topicos?.priority}}</div>
-        <div class="ion-padding">Color: {{topicos?.color}}</div>
-      </ion-item>
+      <div class="ion-padding" slot="content">Fecha de creacion: {{topico.create_date}}</div>
+      <div class="ion-padding" slot="content">Orden: {{topico.order}} | Prioridad: {{topico.priority}}</div>
+      <div class="ion-padding" slot="content">Color: {{topico.color}}</div>
     </ion-accordion>
   </ion-accordion-group>
-  
 
   <ion-fab slot="fixed" vertical="bottom" horizontal="end">
     <ion-fab-button routerLink="/edit-topic/0">

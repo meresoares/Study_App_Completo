@@ -7,16 +7,22 @@ const authMiddleware = require('../../middleware/auth.controller');
 
 module.exports = function(app) {
 
-    app.get("/users/list", userController.listar);
-
-    app.get("/user/:id", userController.busquedaPorCodigo);
-
-    app.post("/users/update", userController.actualizar);
-
-    app.delete("/user/delete/:id", userController.eliminar);
-
-    app.post("/user/login", userController.login);
-    app.post("/user/logout", 
+    app.get("/users/list", 
     //authMiddleware.auth, 
-    userController.logout);
+    userController.listar);
+
+    app.get("/user/:id",
+    //authMiddleware.auth, 
+    userController.busquedaPorCodigo);
+
+    app.post("/users/update", 
+    //authMiddleware.auth, 
+    userController.actualizar);
+
+    app.delete("/user/delete/:id", 
+    //authMiddleware.auth, 
+    userController.eliminar);
+
+    app.post("/user/login", authMiddleware.auth, userController.login);
+    app.post("/user/logout", authMiddleware.auth, userController.logout);
 }

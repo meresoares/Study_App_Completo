@@ -113,17 +113,17 @@ const login = async function (req, res) {
         ("SELECT * FROM users WHERE email = '" + req.body.email + "' AND password = '" + req.body.password + "'");
         console.log("users", usersDB);
         let user = null;
+
         if(usersDB.length > 0 && usersDB[0].length > 0) {
             user = usersDB[0][0];
+            // Si el usuario ya esta autenticado, devuelve error
             if (user.token) {
-                // Si el user esta autenticado, devuelve la respuesta con mensaje de error
                 res.json({
                     success: false,
-                    error: "El usuario ya esta autenticado"
-                })
+                    error: "Usuario ya esta autenticado"
+                });
                 return;
             }
-
             // Genera un token de autorizacion
             let token = jwt.sign({
                 codigo: user.codigo,
