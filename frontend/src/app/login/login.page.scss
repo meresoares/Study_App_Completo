@@ -1,0 +1,64 @@
+ion-item {
+  --inner-padding-end: 0;
+  --background: transparent;
+}
+
+ion-content {
+  --background: rgb(144, 201, 247);
+}
+
+ion-card-header {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem; /* Agrega un margen inferior para separar del contenido del formulario */
+}
+
+ion-margin-top {
+  margin-top: 1rem; /* Define el margen superior para el botón */
+}
+
+.login-card {
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.card-footer {
+  height: 1rem;
+}
+
+
+ion-label {
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+ion-item h2 {
+  font-weight: 600;
+}
+
+ion-item .date {
+  float: right;
+  align-items: center;
+  display: flex;
+}
+
+ion-item ion-icon {
+  font-size: 42px;
+  margin-right: 8px;
+}
+
+ion-item ion-note {
+  font-size: 15px;
+  margin-right: 12px;
+  font-weight: normal;
+}
+
+h1 {
+  margin: 0;
+  font-weight: bold;
+  font-size: 22px;
+}
+
+p {
+  line-height: 22px;
+}

@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>
-      Usuarios
+      Study App - Usuarios
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -19,17 +19,15 @@
     </ion-toolbar>
   </ion-header>
   
-  <ion-list>
-    <!--
-      <app-message *ngFor="let message of getMessages()" [message]="message"></app-message>
-    -->
-
-    <ion-item *ngFor="let usuario of usuarios">
-      <ion-label>{{usuario.id}} - {{usuario.name}} - {{usuario.last_name}}</ion-label>
-      <ion-icon slot="end" name="create-outline" [routerLink]="'/edit-user/' + usuario.id"></ion-icon>
-      <ion-icon slot="end" name="trash-outline"></ion-icon>
-    </ion-item>
-  </ion-list>
+  <ion-card>
+    <ion-list>
+      <ion-item *ngFor="let usuario of usuarios">
+        <ion-label>{{usuario.id}} - {{usuario.name}} - {{usuario.last_name}}</ion-label>
+        <ion-icon slot="end" name="create-outline" color="success" [routerLink]="'/edit-user/' + usuario.id"></ion-icon>
+        <ion-icon slot="end" name="trash-outline" color="danger"></ion-icon>
+      </ion-item>
+    </ion-list>
+  </ion-card>
 
   <ion-fab slot="fixed" vertical="bottom" horizontal="end">
     <ion-fab-button routerLink="/edit-user/0">

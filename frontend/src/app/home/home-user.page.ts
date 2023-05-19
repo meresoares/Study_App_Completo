@@ -1,21 +1,24 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { RefresherCustomEvent } from '@ionic/angular';
 import { MessageComponent } from '../message/message.component';
-
+import { ActivatedRoute, Router } from '@angular/router';
 import { DataService, Message } from '../services/data.service';
 import axios from 'axios';
 
+
 @Component({
-  selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
+  selector: 'app-user',
+  templateUrl: 'home-user.page.html',
+  styleUrls: ['home-user.page.scss'],
 })
-export class HomePage implements OnInit {
+export class HomeUserPage implements OnInit {
   private data = inject(DataService);
   
   usuarios : any = [];
 
-  constructor() {}
+  constructor(
+    private router: Router
+  ) {}
 
   refresh(ev: any) {
     setTimeout(() => {
@@ -29,7 +32,15 @@ export class HomePage implements OnInit {
 
   // Actualizar luego de modificar
   ionViewWillEnter(): void {
-   // this.getUsers();
+     // Verifica si el usuario eta logueado
+    let token = localStorage.getItem("token");
+    localStorage.removeItem("token");
+    if (token) {
+      this.router.navigate(["/login"]);
+      return;
+    }
+
+      this.getUsers();
   }
   ngOnInit(): void {
     this.getUsers();
@@ -37,7 +48,14 @@ export class HomePage implements OnInit {
 
   // Recuperar info del backend
   getUsers () {
-    axios.get("http://localhost:3000/users/list")
+    let token = localStorage.getItem("token");
+    let config = {
+      headers : {
+      "Authorization" : token
+    }
+  }
+
+    axios.get("http://localhost:3000/users/list", config)
     .then(result => {
       if (result.data.success == true) {
         this.usuarios = result.data.usuarios;

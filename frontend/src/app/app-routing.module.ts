@@ -3,8 +3,8 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    path: 'user',
+    loadChildren: () => import('./home/home-user.module').then( m => m.HomeUserPageModule)
   },
   {
     path: 'view-message/:id',
@@ -26,18 +26,16 @@ const routes: Routes = [
     path: 'edit-topic/:id',
     loadChildren: () => import('./edit-topic/edit-topic.module').then( m => m.EditTopicPageModule)
   },
-
-
-
   
-  {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
-  },
   {
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
+  
+  {
+    path: '',
+    redirectTo: 'user',
+    pathMatch: 'full'
   },
 ];
 

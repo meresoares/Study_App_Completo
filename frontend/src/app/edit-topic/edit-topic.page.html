@@ -1,42 +1,44 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-back-button [text]="getBackButtonText()" defaultHref="/"></ion-back-button>
     </ion-buttons>
     <ion-title>
-      Editar topico
+      Topico | Crear - Editar
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" *ngIf="topico">
-  <ion-item>
-    <ion-icon aria-hidden="true" name="person-circle" color="primary"></ion-icon>
-    <ion-label class="ion-text-wrap">
-      <ion-list>
-        <ion-item> 
-          <ion-input label="Fecha creacion" placeholder="aaaa/mm/dd" [(ngModel)]="topico.create_date"></ion-input>
-        </ion-item>
+  <ion-card>
+    <ion-item>
+      <ion-icon aria-hidden="true" name="person-circle" color="primary"></ion-icon>
+      <ion-label class="ion-text-wrap">
+        <ion-list>
+          <ion-item> 
+            <ion-input label="Fecha creacion" placeholder="aaaa/mm/dd" [(ngModel)]="topico.create_date"></ion-input>
+          </ion-item>
 
-        <ion-item> 
-          <ion-input label="Nombre" placeholder="Nombre" [(ngModel)]="topico.name"></ion-input>
-        </ion-item>
+          <ion-item> 
+            <ion-input label="Nombre" placeholder="Nombre" [(ngModel)]="topico.name"></ion-input>
+          </ion-item>
 
-        <ion-item> 
-          <ion-input label="Orden" placeholder="Orden" [(ngModel)]="topico.order"></ion-input>
-        </ion-item>
+          <ion-item> 
+            <ion-input label="Orden" placeholder="Orden" [(ngModel)]="topico.order"></ion-input>
+          </ion-item>
 
-        <ion-item> 
-          <ion-input label="Prioridad" placeholder="Prioridad" [(ngModel)]="topico.priority"></ion-input>
-        </ion-item>
+          <ion-item> 
+            <ion-input label="Prioridad" placeholder="Prioridad" [(ngModel)]="topico.priority"></ion-input>
+          </ion-item>
 
-        <ion-item> 
-          <ion-input label="Color" placeholder="Color" [(ngModel)]="topico.color"></ion-input>
-        </ion-item>
+          <ion-item> 
+            <ion-input label="Color" placeholder="Color" [(ngModel)]="topico.color"></ion-input>
+          </ion-item>
 
-      </ion-list>
-    </ion-label>
-  </ion-item>
+        </ion-list>
+      </ion-label>
+    </ion-item>
+  </ion-card>
 
   <ion-fab slot="fixed" vertical="bottom" horizontal="end">
     <ion-fab-button (click)="saveTopic()">
