@@ -72,6 +72,11 @@ export class EditUserPage implements OnInit {
     })
   }
 
+  logoutUser() {
+    localStorage.removeItem('token');
+    this.router.navigate(['/login']);
+  }
+  
   /* deleteUser() {
     console.log("usuario", this.usuario);
     var data = {

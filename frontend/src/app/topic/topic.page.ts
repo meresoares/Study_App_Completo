@@ -2,7 +2,7 @@ import { Component, Injectable, OnInit, inject } from '@angular/core';
 import { RefresherCustomEvent, ToastController } from '@ionic/angular';
 import { DataService, Message } from '../services/data.service';
 import axios from 'axios';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-topic',
@@ -16,7 +16,8 @@ export class TopicPage implements OnInit {
   topicos: any = [];
 
   constructor(private data: DataService,
-    private toastController: ToastController,) {}
+    private toastController: ToastController,
+    private router: Router) {}
 
   refresh(ev: any) {
     setTimeout(() => {
@@ -41,6 +42,11 @@ export class TopicPage implements OnInit {
         console.log(error.message);
       });
   }
+
+  logoutUser() {
+    localStorage.removeItem('token');
+    this.router.navigate(['/login']);
+  }
 
 deleteTopic(id: string) {
   axios.delete(`http://localhost:3000/topics/delete/` + id)

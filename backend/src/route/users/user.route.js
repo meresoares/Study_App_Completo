@@ -23,6 +23,11 @@ module.exports = function(app) {
     //authMiddleware.auth, 
     userController.eliminar);
 
-    app.post("/user/login", authMiddleware.auth, userController.login);
-    app.post("/user/logout", authMiddleware.auth, userController.logout);
+    app.post("/user/login", 
+    //authMiddleware.auth, 
+    userController.login);
+
+    app.post("/user/logout", 
+    //authMiddleware.auth, 
+    userController.logout);
 }

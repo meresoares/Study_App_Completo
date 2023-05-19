@@ -4,19 +4,19 @@ import { IonicModule } from '@ionic/angular';
 
 import { MessageComponentModule } from '../message/message.module';
 
-import { UserPage } from './home-user.page';
+import { HomeUserPage } from './home-user.page';
 
 describe('UserPage', () => {
-  let component: UserPage;
-  let fixture: ComponentFixture<UserPage>;
+  let component: HomeUserPage;
+  let fixture: ComponentFixture<HomeUserPage>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [UserPage],
+      declarations: [HomeUserPage],
       imports: [IonicModule.forRoot(), MessageComponentModule, RouterModule.forRoot([])]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(UserPage);
+    fixture = TestBed.createComponent(HomeUserPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

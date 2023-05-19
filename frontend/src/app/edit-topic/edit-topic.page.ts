@@ -60,6 +60,11 @@ export class EditTopicPage implements OnInit {
       });
   }
 
+  logoutUser() {
+    localStorage.removeItem('token');
+    this.router.navigate(['/login']);
+  }
+
   async presentToast(message: string) {
     const toast = await this.toastController.create({
       message: message,

@@ -78,6 +78,14 @@ export class LoginPage implements OnInit {
     })
   }
 
+  logoutUser() {
+    // Elimina el token del almacenamiento local
+    localStorage.removeItem('token');
+
+    // Navega al inicio o a la página de login nuevamente
+    this.router.navigate(['/login']);
+  }
+
   /* deleteUser() {
     console.log("usuario", this.usuario);
     var data = {

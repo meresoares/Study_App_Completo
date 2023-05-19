@@ -66,4 +66,10 @@ export class HomeUserPage implements OnInit {
       console.log(error.message)
     })
   }
+
+  logoutUser() {
+    localStorage.removeItem('token');
+    this.router.navigate(['/login']);
+  }
+  
 }
