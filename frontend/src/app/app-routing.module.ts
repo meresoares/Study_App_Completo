@@ -4,7 +4,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: 'user',
-    loadChildren: () => import('./home/home-user.module').then( m => m.HomeUserPageModule)
+    loadChildren: () => import('./home-user/home-user.module').then( m => m.HomeUserPageModule)
   },
   {
     path: 'view-message/:id',

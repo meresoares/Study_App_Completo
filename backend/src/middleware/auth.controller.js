@@ -1,32 +1,39 @@
 const { sequelize } = require("../connection");
-const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken')
 
 const auth = async function (req, res, next) {
-    if (!req.headers.authorization) {
-        // Verifica si se proporcioa el encabezado de autorizacion
+    try {
+      if (!req.headers.authorization) {
         res.json({
-            success: false,
-            error: 'No authorization header'
-        }) 
+          success: false,
+          error: 'No authorization header'
+        });
         return;
-    } else {
-        let token = req.headers.authorization;
+      }
+  
+      const token = req.headers.authorization;
+      const userDB = await sequelize.query("SELECT * FROM users WHERE token = '" + token + "'");
+      let user = null;
 
-        // Consulta la bd para verificar el token
-        const usersDB = await sequelize.query("SELECT * FROM users WHERE token = '" + token + "'");
-        let user = null;
-        if (usersDB.length > 0 && usersDB[0].length > 0) {
-            user = usersDB[0][0];
-            console.log("Token del usuario: ", user);
-            // almacena el id de usuario en res.locals para acceder a otras partes de la app
-            res.locals.userId = user.id;
-            // Pasa al siguiente middleware
-            next();
-        } else {
-            res.json({
-                success: false,
-                error: 'Token invalido'
-            })
-        }
+      if (usersDB.length > 0 && usersDB[0].length > 0) {
+        user = usersDB[0][0];
+        console.log("Token del usuario:", user);
+        res.locals.userId = user.id;
+        next();
+      } else {
+        res.json({
+          success: false,
+          error: 'Token inválido'
+        });
+      }
+    } catch (error) {
+      console.log(error);
+      res.json({
+        success: false,
+        error: error.message
+      });
     }
-}
+  };
+  
+  module.exports = auth;
+  

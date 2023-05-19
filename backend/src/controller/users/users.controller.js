@@ -168,7 +168,12 @@ const logout = async function (req, res) {
         })
     }
 }
-
 module.exports = {
-    listar, busquedaPorCodigo: consultarPorCodigo, actualizar, eliminar, login, logout
-};
+    listar,
+    busquedaPorCodigo: consultarPorCodigo,
+    actualizar,
+    eliminar,
+    login,
+    logout
+  };
+  
