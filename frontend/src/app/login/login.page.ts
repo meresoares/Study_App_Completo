@@ -86,7 +86,7 @@ export class LoginPage implements OnInit {
     this.router.navigate(['/login']);
   }
 
-  /* deleteUser() {
+  deleteUser() {
     console.log("usuario", this.usuario);
     var data = {
       id : this.usuario.id, 
@@ -109,7 +109,7 @@ export class LoginPage implements OnInit {
     }).catch(error => {
       this.presentToast("Error de conexión: " + error.message);
     })
-  } */
+  } 
 
   async presentToast(message: string) {
     const toast = await this.toastController.create({

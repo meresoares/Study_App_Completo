@@ -88,9 +88,10 @@ const actualizar = async function (req, res) {
 
 const eliminar = async function (req, res) {
     console.log("eliminar topic");
-
     try {
-        await TopicsService.eliminar(req.params.filtro || "");
+    //Borrado fisico
+        TopicModel.destroy(req.params.id);
+        //await sequelize.query("UPDATE topics SET deleted=true WHERE id = " + req.params.id);
         res.json({
             success: true
         })
@@ -103,5 +104,8 @@ const eliminar = async function (req, res) {
 }
 
 module.exports = {
-    listar, busquedaPorCodigo: consultarPorCodigo, actualizar, eliminar
+    listar, 
+    busquedaPorCodigo: consultarPorCodigo, 
+    actualizar, 
+    eliminar
 }
